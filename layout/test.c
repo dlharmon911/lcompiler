@@ -1,6 +1,6 @@
 /*
  * File "test.c" generated from compiled manifest
-. * 2026-08-22 21:09:32
+. * 2026-08-23 08:31:57
  * Do not modify this file.
  */
 
@@ -9,14 +9,8 @@
 const char* TEST_ERROR_STRING_FAILURE = "Failed to %s %s.";
 const char* TEST_ERROR_STRING_NULL_POINTER = "NULL pointer error: \"%s\".";
 
-int32_t test_initialize(test_data_t* data)
+int32_t test_install_allegro(void)
 {
-	if (NULL == data)
-	{
-		fprintf(stderr, TEST_ERROR_STRING_NULL_POINTER, "data");
-		return-1;
-	}
-
 	if (!al_init())
 	{
 		fprintf(stderr, TEST_ERROR_STRING_FAILURE, "initialize", "Allegro library");
@@ -59,6 +53,50 @@ int32_t test_initialize(test_data_t* data)
 		return -1;
 	}
 
+	return 0;
+}
+
+int32_t test_uninstall_allegro(void)
+{
+	if (al_is_audio_installed())
+	{
+		al_uninstall_audio();
+	}
+
+	if (al_is_font_addon_initialized())
+	{
+		al_shutdown_font_addon();
+	}
+
+	if (al_is_image_addon_initialized())
+	{
+		al_shutdown_image_addon();
+	}
+
+	if (al_is_keyboard_installed())
+	{
+		al_uninstall_keyboard();
+	}
+
+	if (al_is_mouse_installed())
+	{
+		al_uninstall_mouse();
+	}
+
+	if (al_is_system_installed())
+	{
+		al_uninstall_system();
+	}
+}
+
+int32_t test_initialize_data(test_data_t* data)
+{
+	if (NULL == data)
+	{
+		fprintf(stderr, TEST_ERROR_STRING_NULL_POINTER, "data");
+		return-1;
+	}
+
 	al_set_new_display_flags(ALLEGRO_WINDOWED|ALLEGRO_OPENGL|ALLEGRO_RESIZABLE|ALLEGRO_PROGRAMMABLE_PIPELINE);
 	al_set_new_window_title(TEST_TITLE);
 	al_set_new_display_option(ALLEGRO_DEPTH_SIZE, 16, ALLEGRO_SUGGEST);
@@ -87,11 +125,10 @@ int32_t test_initialize(test_data_t* data)
 	al_register_event_source(data->m_event_queue, al_get_timer_event_source(data->m_timer));
 	al_register_event_source(data->m_event_queue, al_get_keyboard_event_source());
 	al_register_event_source(data->m_event_queue, al_get_mouse_event_source());
-
 	return 0;
 }
 
-void test_shutdown(test_data_t* data)
+void test_uninitialize_data(test_data_t* data)
 {
 	if (NULL == data)
 	{
@@ -117,23 +154,4 @@ void test_shutdown(test_data_t* data)
 		data->m_display = NULL;
 	}
 
-	if (al_is_audio_installed())
-	{
-		al_uninstall_audio();
-	}
-
-	if (al_is_font_addon_initialized())
-	{
-		al_shutdown_font_addon();
-	}
-
-	if (al_is_image_addon_initialized())
-	{
-		al_shutdown_image_addon();
-	}
-
-	if (al_is_system_installed())
-	{
-		al_uninstall_system();
-	}
 }

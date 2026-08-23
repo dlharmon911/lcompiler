@@ -9,62 +9,10 @@
 #include <string.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include "lc_strings.h"
 
-#define LC_STRING_TITLE			"Manifest Layout Compiler"
-#define LC_STRING_VERSION		"1.0.0"
-#define LC_STRING_MANIFEST		"manifest"
 #define LC_UNUSED(x)			(void)(x)
 #define LC_LOG_INFO(...)		fprintf(stderr, __VA_ARGS__); fprintf(stderr, "\n")
-
-#define LC_DEFAULT_PREFIX		"manifest"
-#define LC_DEFAULT_DIRECTORY	"."
-#define LC_DEFAULT_INPUT_FILE	"manifest.xml"
-
-#define LC_STRING_TIMESTAMP_FORMAT	"%Y-%m-%d %H:%M:%S"
-#define LC_STRING_TIMESTAMP		"/*\n" \
-								" * File \"%s\" generated from compiled manifest\n." \
-								" * %s\n" \
-								" * Do not modify this file.\n" \
-								" */\n\n"
-
-
-#define LC_STRING_DATA_TYPEDEF	"typedef struct %s_data_tag_t %s_data_t;\n\n"
-
-#define LC_STRING_DATA_STRUCT	"struct %s_data_tag_t\n" \
-								"{\n" \
-								"\tALLEGRO_DISPLAY* m_display;\n" \
-								"\tALLEGRO_TIMER* m_timer;\n" \
-								"\tALLEGRO_EVENT_QUEUE* m_event_queue;\n" \
-								"};\n\n"
-#define LC_STRING_HEADER_GUARD_START	"#ifndef _HEADER_GUARD_%s_DATA_H_\n" \
-										"#define _HEADER_GUARD_%s_DATA_H_\n\n"
-#define LC_STRING_HEADER_GUARD_END		"#endif // !_HEADER_GUARD_%s_DATA_H_\n\n"
-#define LC_STRING_FUNCTION_INITIALIZE	"int32_t %s_initialize(%s_data_t* data)"
-#define LC_STRING_FUNCTION_SHUTDOWN	"void %s_shutdown(%s_data_t* data)"
-
-#define LC_STRING_FUNCTION_DECLARE LC_STRING_FUNCTION_INITIALIZE ";\n" \
-										LC_STRING_FUNCTION_SHUTDOWN ";\n\n"
-
-#define LC_STRING_INCLUDE	"#include \"%s.h\"\n\n"
-#define LC_STRING_ALLEGRO_INCLUDE	"#include <allegro5/allegro5.h>\n"
-#define LC_STRING_ALLEGRO_ADDON_INCLUDE		"#include <allegro5/allegro_%s.h>\n"
-#define LC_STRING_DEFAULT_INCLUDE	"#include <stdio.h>\n" \
-									"#include <stdlib.h>\n" \
-									"#include <string.h>\n" \
-									"#include <stdint.h>\n" \
-									"#include <stdbool.h>\n\n"
-#define LC_STRING_DEFINE			"#define "
-#define LC_STRING_HEADER_SECTION	"/* SECTION: %s */\n\n"
-#define LC_STRING_SECTION_DEFINES	"DEFINES"
-#define LC_STRING_SECTION_TYPEDEF	"TYPEDEF"
-#define LC_STRING_SECTION_STRUCT	"STRUCT"
-#define LC_STRING_SECTION_FUNCTIONS	"FUNCTIONS"
-
-
-#define LC_STRING_MANIFEST_APPLICATION_ELEMENT_DISPLAY "display"
-#define LC_STRING_MANIFEST_APPLICATION_ELEMENT_TIMER "timer"
-#define LC_STRING_MANIFEST_APPLICATION_ELEMENT_EVENT_QUEUE "event_queue"
-#define LC_STRING_MANIFEST_APPLICATION_ATTRIBUTE_TITLE "title"
 
 /**************************************************************************/
 

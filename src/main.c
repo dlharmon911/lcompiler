@@ -33,11 +33,11 @@ static void lc_main_zero_data(lc_parse_data_t* data, const char* executable_name
 
 	strcpy_s(data->m_current_directory, sizeof(data->m_current_directory), al_get_current_directory());
 	strcpy_s(data->m_executable_name, sizeof(data->m_executable_name), executable_name);
-	strcpy_s(data->m_prefix, sizeof(data->m_prefix), LC_DEFAULT_PREFIX);
-	strcpy_s(data->m_directory, sizeof(data->m_directory), LC_DEFAULT_DIRECTORY);
-	strcpy_s(data->m_input_filename, sizeof(data->m_input_filename), LC_DEFAULT_INPUT_FILE);
-	strcpy_s(data->m_output_filename_header, sizeof(data->m_output_filename_header), LC_DEFAULT_PREFIX ".h");
-	strcpy_s(data->m_output_filename_source, sizeof(data->m_output_filename_source), LC_DEFAULT_PREFIX ".c");
+	strcpy_s(data->m_prefix, sizeof(data->m_prefix), LC_STRING_DEFAULT_PREFIX);
+	strcpy_s(data->m_directory, sizeof(data->m_directory), LC_STRING_DEFAULT_DIRECTORY);
+	strcpy_s(data->m_input_filename, sizeof(data->m_input_filename), LC_STRING_DEFAULT_INPUT_FILE);
+	strcpy_s(data->m_output_filename_header, sizeof(data->m_output_filename_header), LC_STRING_DEFAULT_PREFIX ".h");
+	strcpy_s(data->m_output_filename_source, sizeof(data->m_output_filename_source), LC_STRING_DEFAULT_PREFIX ".c");
 	data->m_user_data = NULL;
 }
 
@@ -86,6 +86,22 @@ static int32_t lc_main_process(int32_t argc, char** argv, lc_parse_data_t* data,
 	return 0;
 }
 
+static void lc_output_data(const lc_parse_data_t* data)
+{
+	if (NULL == data)
+	{
+		return;
+	}
+
+	fprintf(stderr, "Executable Name: %s\n", data->m_executable_name);
+	fprintf(stderr, "Current Directory: %s\n", data->m_current_directory);
+	fprintf(stderr, "Directory: %s\n", data->m_directory);
+	fprintf(stderr, "Prefix: %s\n", data->m_prefix);
+	fprintf(stderr, "Prefix Upper: %s\n", data->m_prefix_upper);
+	fprintf(stderr, "Input Filename: %s\n", data->m_input_filename);
+	fprintf(stderr, "Output Filename Header: %s\n", data->m_output_filename_header);
+	fprintf(stderr, "Output Filename Source: %s\n", data->m_output_filename_source);
+}
 
 int32_t main(int32_t argc, char** argv)
 {
@@ -93,7 +109,8 @@ int32_t main(int32_t argc, char** argv)
 	lc_parse_data_t* data = NULL;
 	xml_document_t* xml_doc = NULL;
 
-	fprintf(stderr, "%s\n", LC_STRING_TITLE);
+	fprintf(stderr, "%s\n", LC_STRING_APP_NAME);
+	fprintf(stderr, "Version: %s\n", LC_STRING_VERSION);
 
 	if (!al_init())
 	{

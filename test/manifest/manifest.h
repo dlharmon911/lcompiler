@@ -1,6 +1,6 @@
 /*
  * File "manifest.h" generated from compiled manifest
-. * 2026-08-22 21:12:28
+. * 2026-08-23 09:39:59
  * Do not modify this file.
  */
 
@@ -42,8 +42,41 @@ struct manifest_data_tag_t
 
 /* SECTION: FUNCTIONS */
 
-int32_t manifest_initialize(manifest_data_t* data);
-void manifest_shutdown(manifest_data_t* data);
+/// <summary>
+/// Installs the Allegro library, Allegro addons and input devices.
+/// </summary>
+/// <param name="N/A"></param>
+/// <returns>Result of the installation (0 for success, -1 for failure)</returns>
+int32_t manifest_install_allegro(void);
+
+/// <summary>
+/// Uninstalls the Allegro library, Allegro addons and input devices.
+/// </summary>
+/// <param name="N/A"></param>
+/// <returns>N/A</returns>
+void manifest_uninstall_allegro(void);
+
+/// <summary>
+/// Zeros out the manifest data structure.
+/// </summary>
+/// <param name="data">Pointer to the manifest data structure</param>
+/// <returns>N/A</returns>
+void manifest_zero_data(manifest_data_t* data);
+
+/// <summary>
+/// Initializes the manifest data structure.
+/// </summary>
+/// <param name="data">Pointer to the manifest data structure</param>
+/// <returns>Result of the initialization (0 for success, -1 for failure)</returns>
+int32_t manifest_initialize_data(manifest_data_t* data);
+
+/// <summary>
+/// Uninitializes the manifest data structure.
+/// </summary>
+/// <param name="data">Pointer to the manifest data structure</param>
+/// <returns>N/A</returns>
+void manifest_uninitialize_data(manifest_data_t* data);
+
 
 #endif // !_HEADER_GUARD_MANIFEST_DATA_H_
 

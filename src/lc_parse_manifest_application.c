@@ -2,14 +2,13 @@
 
 const lc_parse_context_element_t g_manifest_application_parse_contexts[] =
 {
-	{ LC_STRING_MANIFEST_APPLICATION_ELEMENT_DISPLAY, lc_parse_manifest_element_application_display },
-	{ LC_STRING_MANIFEST_APPLICATION_ELEMENT_TIMER, lc_parse_manifest_element_application_timer },
-	{ LC_STRING_MANIFEST_APPLICATION_ELEMENT_EVENT_QUEUE, lc_parse_manifest_element_application_event_queue }
+	{ LC_STRING_DISPLAY, lc_parse_manifest_element_application_display },
+	{ LC_STRING_TIMER, lc_parse_manifest_element_application_timer }
 };
 
 const lc_parse_context_attribute_t g_manifest_application_parse_attributes[] =
 {
-	{	.m_name = LC_STRING_MANIFEST_APPLICATION_ATTRIBUTE_TITLE, 
+	{	.m_name = LC_STRING_TITLE, 
 		.m_parse_function = lc_parse_attribute_define_string,
 		.m_prefix = {.m_data = NULL, .m_length = 0} }
 };

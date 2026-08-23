@@ -1,6 +1,6 @@
 /*
  * File "test.h" generated from compiled manifest
-. * 2026-08-22 21:09:32
+. * 2026-08-23 08:31:57
  * Do not modify this file.
  */
 
@@ -41,8 +41,10 @@ struct test_data_tag_t
 
 /* SECTION: FUNCTIONS */
 
-int32_t test_initialize(test_data_t* data);
-void test_shutdown(test_data_t* data);
+int32_t test_install_allegro(void);
+int32_t test_uninstall_allegro(void);
+int32_t test_initialize_data(test_data_t* data);
+void test_uninitialize_data((null)_data_t* data);
 
 #endif // !_HEADER_GUARD_TEST_DATA_H_
 

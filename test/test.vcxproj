@@ -164,9 +164,9 @@
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">d:\gtmp\repos\lcompiler\x64\Release\lcompiler %(FullPath) -d manifest -o manifest</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)$(Platform)\$(Configuration)\lcompiler %(FullPath) -d manifest -o manifest</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">manifest.c;manifest.h</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">d:\gtmp\repos\lcompiler\x64\Release\lcompiler %(FullPath) -d manifest -o manifest</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)$(Platform)\$(Configuration)\lcompiler %(FullPath) -d manifest -o manifest</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">manifest.c;manifest.h</Outputs>
     </CustomBuild>
   </ItemGroup>
@@ -175,6 +175,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\lcompiler.vcxproj">
+      <Project>{e7fe3e64-e9b0-4aeb-8b0f-d0e35108a9fe}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

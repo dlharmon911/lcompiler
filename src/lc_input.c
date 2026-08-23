@@ -10,9 +10,9 @@ enum LC_INPUT_FLAGS
 
 static const lc_string_int_pair_t LC_INPUT_FLAG_NAMES[LC_INPUT_FLAG_ID_COUNT] =
 {
-	{ "keyboard", LC_INPUT_FLAG_KEYBOARD },
-	{ "mouse", LC_INPUT_FLAG_MOUSE },
-	{ "joystick", LC_INPUT_FLAG_JOYSTICK }		
+	{ LC_STRING_INPUT_KEYBOARD, LC_INPUT_FLAG_KEYBOARD },
+	{ LC_STRING_INPUT_MOUSE, LC_INPUT_FLAG_MOUSE },
+	{ LC_STRING_INPUT_JOYSTICK, LC_INPUT_FLAG_JOYSTICK }		
 };
 
 int32_t lc_input_flag_parse(o_stringview_t view)

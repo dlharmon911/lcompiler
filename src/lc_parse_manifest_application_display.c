@@ -4,13 +4,13 @@ const lc_parse_context_attribute_t g_display_parse_attributes[] =
 {
 	{ .m_name = "width",
 		.m_parse_function = lc_parse_attribute_define_value,
-		.m_prefix = {.m_data = LC_STRING_MANIFEST_APPLICATION_ELEMENT_DISPLAY, .m_length = sizeof(LC_STRING_MANIFEST_APPLICATION_ELEMENT_DISPLAY) - 1} },
+		.m_prefix = {.m_data = LC_STRING_DISPLAY, .m_length = sizeof(LC_STRING_DISPLAY) - 1} },
 	{.m_name = "height",
 		.m_parse_function = lc_parse_attribute_define_value,
-		.m_prefix = {.m_data = LC_STRING_MANIFEST_APPLICATION_ELEMENT_DISPLAY, .m_length = sizeof(LC_STRING_MANIFEST_APPLICATION_ELEMENT_DISPLAY) - 1} },
+		.m_prefix = {.m_data = LC_STRING_DISPLAY, .m_length = sizeof(LC_STRING_DISPLAY) - 1} },
 		{.m_name = "flags",
 		.m_parse_function = lc_parse_display_flags,
-		.m_prefix = {.m_data = LC_STRING_MANIFEST_APPLICATION_ELEMENT_DISPLAY, .m_length = sizeof(LC_STRING_MANIFEST_APPLICATION_ELEMENT_DISPLAY) - 1} }
+		.m_prefix = {.m_data = LC_STRING_DISPLAY, .m_length = sizeof(LC_STRING_DISPLAY) - 1} }
 };
 
 const lc_parse_context_element_t g_display_parse_elements[] =

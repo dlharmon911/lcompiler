@@ -109,7 +109,18 @@ int32_t lc_output_file_header(const lc_parse_data_t* data)
 	al_fprintf(file, LC_STRING_HEADER_SECTION, LC_STRING_SECTION_STRUCT);
 	al_fprintf(file, LC_STRING_DATA_STRUCT, data->m_prefix);
 	al_fprintf(file, LC_STRING_HEADER_SECTION, LC_STRING_SECTION_FUNCTIONS);
-	al_fprintf(file, LC_STRING_FUNCTION_DECLARE, data->m_prefix, data->m_prefix, data->m_prefix, data->m_prefix);
+
+	al_fprintf(file, LC_STRING_COMMENT_INSTALL_ALLEGRO);
+	al_fprintf(file, LC_STRING_DECLARE_FUNCTION_INSTALL_ALLEGRO ";\n\n", data->m_prefix);
+	al_fprintf(file, LC_STRING_COMMENT_UNINSTALL_ALLEGRO);
+	al_fprintf(file, LC_STRING_DECLARE_FUNCTION_UNINSTALL_ALLEGRO ";\n\n", data->m_prefix);
+	al_fprintf(file, LC_STRING_COMMENT_ZERO_DATA);
+	al_fprintf(file, LC_STRING_DECLARE_FUNCTION_ZERO_DATA ";\n\n", data->m_prefix, data->m_prefix);
+	al_fprintf(file, LC_STRING_COMMENT_INITIALIZE_DATA);
+	al_fprintf(file, LC_STRING_DECLARE_FUNCTION_INITIALIZE_DATA ";\n\n", data->m_prefix, data->m_prefix);
+	al_fprintf(file, LC_STRING_COMMENT_UNINITIALIZE_DATA);
+	al_fprintf(file, LC_STRING_DECLARE_FUNCTION_UNINITIALIZE_DATA ";\n\n", data->m_prefix, data->m_prefix);
+	al_fputc(file, '\n');
 	al_fprintf(file, LC_STRING_HEADER_GUARD_END, data->m_prefix_upper);
 	al_fclose(file);
 	return 0;

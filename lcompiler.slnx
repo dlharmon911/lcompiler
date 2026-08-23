@@ -3,6 +3,8 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
+  <Project Path="../libogle/libogle.vcxproj" Id="9039a8de-fb9e-43cd-b32c-2c42e6ec7a3c" />
+  <Project Path="../libxml/libxml.vcxproj" Id="d2415e63-e991-4b23-a3e2-5daabdf76491" />
   <Project Path="lcompiler.vcxproj" Id="e7fe3e64-e9b0-4aeb-8b0f-d0e35108a9fe" />
   <Project Path="test/test.vcxproj" Id="cb2ccbfb-72f5-49f1-8cb9-ad27cb2be7bb" />
 </Solution>

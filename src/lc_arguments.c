@@ -46,8 +46,6 @@ int32_t lc_parse_command_line_arguments(int32_t argc, const char** argv, lc_pars
 		return -1;
 	}
 
-	fprintf(stderr, "Compiling file: %s\n", argv[0]);
-
 	while (argc > 0)
 	{
 		o_stringview_t view = ogle_stringview_cstr(argv[0]);
@@ -114,7 +112,8 @@ int32_t lc_argument_version(o_stringview_t value, lc_parse_data_t* parse_data)
 	LC_UNUSED(value);
 	LC_UNUSED(parse_data);
 
-	LC_LOG_INFO("%s Version: %s", LC_STRING_TITLE, LC_STRING_VERSION);
+	fprintf(stderr, "%s\n", LC_STRING_APP_NAME);
+	fprintf(stderr, "Version: %s\n", LC_STRING_VERSION);
 
 	return 1;
 }

@@ -167,7 +167,6 @@
     <ClCompile Include="src\lc_parse_manifest_application_display.c" />
     <ClCompile Include="src\lc_parse_manifest_application_display_flag.c" />
     <ClCompile Include="src\lc_parse_manifest_application_display_option.c" />
-    <ClCompile Include="src\lc_parse_manifest_application_event_queue.c" />
     <ClCompile Include="src\lc_parse_manifest_application_timer.c" />
     <ClCompile Include="src\lc_parse_manifest_input.c" />
     <ClCompile Include="src\lc_print.c" />
@@ -177,9 +176,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\lc_common.h" />
+    <ClInclude Include="include\lc_strings.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="manifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\libogle\libogle.vcxproj">
+      <Project>{9039a8de-fb9e-43cd-b32c-2c42e6ec7a3c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\libxml\libxml.vcxproj">
+      <Project>{d2415e63-e991-4b23-a3e2-5daabdf76491}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

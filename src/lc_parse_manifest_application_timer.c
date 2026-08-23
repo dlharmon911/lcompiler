@@ -5,7 +5,7 @@ const lc_parse_context_attribute_t g_timer_parse_attributes[] =
 	{
 		.m_name = "speed",
 		.m_parse_function = lc_parse_attribute_define_value,
-		.m_prefix = {.m_data = LC_STRING_MANIFEST_APPLICATION_ELEMENT_TIMER, .m_length = sizeof(LC_STRING_MANIFEST_APPLICATION_ELEMENT_TIMER) - 1}
+		.m_prefix = {.m_data = LC_STRING_TIMER, .m_length = sizeof(LC_STRING_TIMER) - 1}
 	}
 };
 

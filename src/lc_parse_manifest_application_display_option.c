@@ -4,15 +4,15 @@ const lc_parse_context_attribute_t g_display_option_parse_attributes[] =
 {
 	{.m_name = "type",
 	.m_parse_function = lc_parse_display_option_type,
-	.m_prefix = {.m_data = LC_STRING_MANIFEST_APPLICATION_ELEMENT_DISPLAY, .m_length = sizeof(LC_STRING_MANIFEST_APPLICATION_ELEMENT_DISPLAY) - 1}
+	.m_prefix = {.m_data = LC_STRING_DISPLAY, .m_length = sizeof(LC_STRING_DISPLAY) - 1}
 	},
 	{ .m_name = "value",
 	.m_parse_function = lc_parse_display_option_value,
-	.m_prefix = {.m_data = LC_STRING_MANIFEST_APPLICATION_ELEMENT_DISPLAY, .m_length = sizeof(LC_STRING_MANIFEST_APPLICATION_ELEMENT_DISPLAY) - 1}
+	.m_prefix = {.m_data = LC_STRING_DISPLAY, .m_length = sizeof(LC_STRING_DISPLAY) - 1}
 	},
 	{.m_name = "importance",
 	.m_parse_function = lc_parse_display_option_importance,
-	.m_prefix = {.m_data = LC_STRING_MANIFEST_APPLICATION_ELEMENT_DISPLAY, .m_length = sizeof(LC_STRING_MANIFEST_APPLICATION_ELEMENT_DISPLAY) - 1}
+	.m_prefix = {.m_data = LC_STRING_DISPLAY, .m_length = sizeof(LC_STRING_DISPLAY) - 1}
 	}
 };
 
