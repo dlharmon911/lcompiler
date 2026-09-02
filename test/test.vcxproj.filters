@@ -21,7 +21,7 @@
     <ClCompile Include="src\main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="manifest\manifest.c">
+    <ClCompile Include="manifest\t_manifest.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -31,11 +31,11 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="manifest\manifest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ClInclude Include="manifest\t_manifest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

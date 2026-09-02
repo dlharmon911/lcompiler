@@ -89,6 +89,7 @@ struct lc_section_tag_t
 
 struct lc_parse_data_tag_t
 {
+	char m_char;
 	char m_executable_name[256];
 	char m_current_directory[256];
 	char m_directory[256];
@@ -151,18 +152,12 @@ int32_t lc_parse_display_option_value(lc_parse_data_t* data, o_stringview_t pref
 int32_t lc_parse_display_option_importance(lc_parse_data_t* data, o_stringview_t prefix, const xml_attribute_t* xml_attribute);
 int32_t lc_parse_manifest_element_application_timer(lc_parse_data_t* data, const xml_element_t* xml_element);
 int32_t lc_parse_manifest_element_application_event_queue(lc_parse_data_t* data, const xml_element_t* xml_element);
-
 int32_t lc_parse_attribute_define_value(lc_parse_data_t* data, o_stringview_t prefix, const xml_attribute_t* xml_attribute);
 int32_t lc_parse_attribute_define_string(lc_parse_data_t* data, o_stringview_t prefix, const xml_attribute_t* xml_attribute);
-
-
-
-
 int32_t lc_parse_children_context(lc_parse_data_t* data, const xml_child_t* children, const lc_parse_context_element_t* context, size_t size);
 int32_t lc_parse_child_element_context(lc_parse_data_t* data, const xml_element_t* element, const lc_parse_context_element_t* context, size_t size);
 int32_t lc_parse_attribute_context(lc_parse_data_t* data, const xml_attribute_t* attribute, const lc_parse_context_attribute_t* context, size_t size);
 int32_t lc_parse_attributes_context(lc_parse_data_t* data, const xml_attribute_t* attributes, const lc_parse_context_attribute_t* context, size_t size);
-
 int32_t lc_parse_element_context(lc_parse_data_t* data, const xml_element_t* element, const lc_parse_context_element_t* element_context, size_t element_size, const lc_parse_context_attribute_t* attribute_context, size_t attribute_size);
 
 

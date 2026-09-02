@@ -132,7 +132,6 @@ int32_t lc_argument_output(o_stringview_t value, lc_parse_data_t* parse_data)
 	}
 
 	strcpy_s(parse_data->m_prefix, sizeof(parse_data->m_prefix), value.m_data);
-	strcpy_s(parse_data->m_prefix_upper, sizeof(parse_data->m_prefix_upper), lc_string_upper(value.m_data));
 
 	return 0;
 }

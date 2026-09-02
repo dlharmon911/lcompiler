@@ -76,7 +76,6 @@ static int32_t lc_main_process(int32_t argc, char** argv, lc_parse_data_t* data,
 		return -1;
 	}
 
-
 	if (lc_parse_manifest(data, root_element) < 0)
 	{
 		printf("Failed to parse manifest from XML document: %s\n", data->m_input_filename);
@@ -140,8 +139,21 @@ int32_t main(int32_t argc, char** argv)
 		return 0;
 	}
 
-	sprintf_s(data->m_output_filename_header, sizeof(data->m_output_filename_header), "%s.h", data->m_prefix);
-	sprintf_s(data->m_output_filename_source, sizeof(data->m_output_filename_source), "%s.c", data->m_prefix);
+	char c = *data->m_prefix;
+
+	if (c >= 'a' && c <= 'z')
+	{
+		c = (char)lc_char_lower((int32_t)c);
+	}
+	data->m_char = c;
+
+	sprintf_s(data->m_output_filename_header, sizeof(data->m_output_filename_header), "%c_manifest.h", data->m_char);
+	sprintf_s(data->m_output_filename_source, sizeof(data->m_output_filename_source), "%c_manifest.c", data->m_char);
+	char upper_prefix[256] = { 0 };
+	strcpy_s(upper_prefix, sizeof(upper_prefix), data->m_prefix);
+	strcpy_s(data->m_prefix_upper, sizeof(data->m_prefix_upper), lc_string_upper(upper_prefix));
+
+	lc_output_data(data);
 
 	result = lc_main_process(argc, argv, data, &xml_doc);
 

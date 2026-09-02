@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "manifest.h"
+#include "t_manifest.h"
 
 typedef struct data_tag_t
 {
@@ -17,20 +17,20 @@ static void data_zero(data_t* data)
 		return;
 	}
 
-	manifest_zero_data((manifest_data_t*)data);
+	t_manifest_zero_data((t_manifest_data_t*)data);
 	data->m_is_running = true;
 	data->m_logic_update = false;
 } 
 
 static int32_t initialize_app(data_t* data)
 {
-	if (manifest_install_allegro() != 0)
+	if (t_manifest_install_allegro() != 0)
 	{
 		fprintf(stderr, "Failed to install Allegro.\n");
 		return 1;
 	}
 
-	if (manifest_initialize_data((manifest_data_t*)data) != 0)
+	if (t_manifest_initialize_data((t_manifest_data_t*)data) != 0)
 	{
 		fprintf(stderr, "Failed to initialize manifest.\n");
 		return 1;
@@ -41,8 +41,8 @@ static int32_t initialize_app(data_t* data)
 
 static void uninitialize_app(data_t* data)
 {
-	manifest_uninitialize_data((manifest_data_t*)data);
-	manifest_uninstall_allegro();
+	t_manifest_uninitialize_data((t_manifest_data_t*)data);
+	t_manifest_uninstall_allegro();
 }
 
 static void input(data_t* data)

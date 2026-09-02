@@ -1,68 +1,68 @@
 /*
- * File "manifest.c" generated from compiled manifest
-. * 2026-08-23 09:39:59
+ * File "t_manifest.c" generated from compiled manifest
+. * 2026-09-01 19:16:34
  * Do not modify this file.
  */
 
-#include "manifest.h"
+#include "t_manifest.h"
 
-const char* MANIFEST_ERROR_STRING_FAILURE = "Failed to %s %s.";
-const char* MANIFEST_ERROR_STRING_NULL_POINTER = "NULL pointer error: \"%s\".";
+const char* TEST_ERROR_STRING_FAILURE = "Failed to %s %s.";
+const char* TEST_ERROR_STRING_NULL_POINTER = "NULL pointer error: \"%s\".";
 
-int32_t manifest_install_allegro(void)
+int32_t t_manifest_install_allegro(void)
 {
 	if (!al_init())
 	{
-		fprintf(stderr, MANIFEST_ERROR_STRING_FAILURE, "initialize", "Allegro library");
+		fprintf(stderr, TEST_ERROR_STRING_FAILURE, "initialize", "Allegro library");
 		return -1;
 	}
 
 	if (!al_install_keyboard())
 	{
-		fprintf(stderr, MANIFEST_ERROR_STRING_FAILURE, "install", "keyboard");
+		fprintf(stderr, TEST_ERROR_STRING_FAILURE, "install", "keyboard");
 		return -1;
 	}
 
 	if (!al_install_mouse())
 	{
-		fprintf(stderr, MANIFEST_ERROR_STRING_FAILURE, "install", "mouse");
+		fprintf(stderr, TEST_ERROR_STRING_FAILURE, "install", "mouse");
 		return -1;
 	}
 
 	if (!al_install_audio())
 	{
-		fprintf(stderr, MANIFEST_ERROR_STRING_FAILURE, "install", "audio");
+		fprintf(stderr, TEST_ERROR_STRING_FAILURE, "install", "audio");
 		return -1;
 	}
 
 	if (!al_init_acodec_addon())
 	{
-		fprintf(stderr, MANIFEST_ERROR_STRING_FAILURE, "initialize", "acodec");
+		fprintf(stderr, TEST_ERROR_STRING_FAILURE, "initialize", "acodec");
 		return -1;
 	}
 
 	if (!al_init_font_addon())
 	{
-		fprintf(stderr, MANIFEST_ERROR_STRING_FAILURE, "initialize", "font");
+		fprintf(stderr, TEST_ERROR_STRING_FAILURE, "initialize", "font");
 		return -1;
 	}
 
 	if (!al_init_image_addon())
 	{
-		fprintf(stderr, MANIFEST_ERROR_STRING_FAILURE, "initialize", "image");
+		fprintf(stderr, TEST_ERROR_STRING_FAILURE, "initialize", "image");
 		return -1;
 	}
 
 	if (!al_init_primitives_addon())
 	{
-		fprintf(stderr, MANIFEST_ERROR_STRING_FAILURE, "initialize", "primitives");
+		fprintf(stderr, TEST_ERROR_STRING_FAILURE, "initialize", "primitives");
 		return -1;
 	}
 
 	return 0;
 }
 
-void manifest_uninstall_allegro(void)
+void t_manifest_uninstall_allegro(void)
 {
 	if (al_is_audio_installed())
 	{
@@ -100,11 +100,11 @@ void manifest_uninstall_allegro(void)
 	}
 }
 
-void manifest_zero_data(manifest_data_t* data)
+void t_manifest_zero_data(t_manifest_data_t* data)
 {
 	if (NULL == data)
 	{
-		fprintf(stderr, MANIFEST_ERROR_STRING_NULL_POINTER, "data");
+		fprintf(stderr, TEST_ERROR_STRING_NULL_POINTER, "data");
 		return;
 	}
 
@@ -113,35 +113,35 @@ void manifest_zero_data(manifest_data_t* data)
 	data->m_event_queue = NULL;
 }
 
-int32_t manifest_initialize_data(manifest_data_t* data)
+int32_t t_manifest_initialize_data(t_manifest_data_t* data)
 {
 	if (NULL == data)
 	{
-		fprintf(stderr, MANIFEST_ERROR_STRING_NULL_POINTER, "data");
+		fprintf(stderr, TEST_ERROR_STRING_NULL_POINTER, "data");
 		return -1;
 	}
 
 	al_set_new_display_flags(ALLEGRO_WINDOWED|ALLEGRO_OPENGL|ALLEGRO_RESIZABLE|ALLEGRO_PROGRAMMABLE_PIPELINE);
-	al_set_new_window_title(MANIFEST_TITLE);
+	al_set_new_window_title(TEST_TITLE);
 	al_set_new_display_option(ALLEGRO_DEPTH_SIZE, 16, ALLEGRO_SUGGEST);
-	data->m_display = al_create_display(MANIFEST_DISPLAY_WIDTH, MANIFEST_DISPLAY_HEIGHT);
+	data->m_display = al_create_display(TEST_DISPLAY_WIDTH, TEST_DISPLAY_HEIGHT);
 	if (NULL == data->m_display)
 	{
-		fprintf(stderr, MANIFEST_ERROR_STRING_FAILURE, "create", "display");
+		fprintf(stderr, TEST_ERROR_STRING_FAILURE, "create", "display");
 		return -1;
 	}
 
-	data->m_timer = al_create_timer(1.0/MANIFEST_TIMER_SPEED);
+	data->m_timer = al_create_timer(1.0/TEST_TIMER_SPEED);
 	if (NULL == data->m_timer)
 	{
-		fprintf(stderr, MANIFEST_ERROR_STRING_FAILURE, "create", "timer");
+		fprintf(stderr, TEST_ERROR_STRING_FAILURE, "create", "timer");
 		return -1;
 	}
 
 	data->m_event_queue = al_create_event_queue();
 	if (NULL == data->m_event_queue)
 	{
-		fprintf(stderr, MANIFEST_ERROR_STRING_FAILURE, "create", "event queue");
+		fprintf(stderr, TEST_ERROR_STRING_FAILURE, "create", "event queue");
 		return -1;
 	}
 
@@ -149,14 +149,15 @@ int32_t manifest_initialize_data(manifest_data_t* data)
 	al_register_event_source(data->m_event_queue, al_get_timer_event_source(data->m_timer));
 	al_register_event_source(data->m_event_queue, al_get_keyboard_event_source());
 	al_register_event_source(data->m_event_queue, al_get_mouse_event_source());
+
 	return 0;
 }
 
-void manifest_uninitialize_data(manifest_data_t* data)
+void t_manifest_uninitialize_data(t_manifest_data_t* data)
 {
 	if (NULL == data)
 	{
-		fprintf(stderr, MANIFEST_ERROR_STRING_NULL_POINTER, "data");
+		fprintf(stderr, TEST_ERROR_STRING_NULL_POINTER, "data");
 		return;
 	}
 
@@ -177,5 +178,4 @@ void manifest_uninitialize_data(manifest_data_t* data)
 		al_destroy_display(data->m_display);
 		data->m_display = NULL;
 	}
-
 }

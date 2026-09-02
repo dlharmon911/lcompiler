@@ -20,9 +20,9 @@
 								" */\n\n"
 
 
-#define LC_STRING_DATA_TYPEDEF	"typedef struct %s_data_tag_t %s_data_t;\n\n"
+#define LC_STRING_DATA_TYPEDEF	"typedef struct %c_manifest_data_tag_t %c_manifest_data_t;\n\n"
 
-#define LC_STRING_DATA_STRUCT	"struct %s_data_tag_t\n" \
+#define LC_STRING_DATA_STRUCT	"struct %c_manifest_data_tag_t\n" \
 								"{\n" \
 								"\tALLEGRO_DISPLAY* m_display;\n" \
 								"\tALLEGRO_TIMER* m_timer;\n" \
@@ -30,13 +30,13 @@
 								"};\n\n"
 #define LC_STRING_HEADER_GUARD_START	"#ifndef _HEADER_GUARD_%s_DATA_H_\n" \
 										"#define _HEADER_GUARD_%s_DATA_H_\n\n"
-#define LC_STRING_HEADER_GUARD_END		"#endif // !_HEADER_GUARD_%s_DATA_H_\n\n"
+#define LC_STRING_HEADER_GUARD_END		"#endif // !_HEADER_GUARD_%s_DATA_H_\n"
 
-#define LC_STRING_DECLARE_FUNCTION_INSTALL_ALLEGRO	"int32_t %s_install_allegro(void)"
-#define LC_STRING_DECLARE_FUNCTION_UNINSTALL_ALLEGRO	"void %s_uninstall_allegro(void)"
-#define LC_STRING_DECLARE_FUNCTION_ZERO_DATA	"void %s_zero_data(%s_data_t* data)"
-#define LC_STRING_DECLARE_FUNCTION_INITIALIZE_DATA	"int32_t %s_initialize_data(%s_data_t* data)"
-#define LC_STRING_DECLARE_FUNCTION_UNINITIALIZE_DATA	"void %s_uninitialize_data(%s_data_t* data)"
+#define LC_STRING_DECLARE_FUNCTION_INSTALL_ALLEGRO	"int32_t %c_manifest_install_allegro(void)"
+#define LC_STRING_DECLARE_FUNCTION_UNINSTALL_ALLEGRO	"void %c_manifest_uninstall_allegro(void)"
+#define LC_STRING_DECLARE_FUNCTION_ZERO_DATA	"void %c_manifest_zero_data(%c_manifest_data_t* data)"
+#define LC_STRING_DECLARE_FUNCTION_INITIALIZE_DATA	"int32_t %c_manifest_initialize_data(%c_manifest_data_t* data)"
+#define LC_STRING_DECLARE_FUNCTION_UNINITIALIZE_DATA	"void %c_manifest_uninitialize_data(%c_manifest_data_t* data)"
 
 #define LC_STRING_ERROR "const char* %s_ERROR_STRING_FAILURE = \"Failed to %%s %%s.\";\n" \
 "const char* %s_ERROR_STRING_NULL_POINTER = \"NULL pointer error: \\\"%%s\\\".\";\n\n"
@@ -102,7 +102,7 @@
 	"\t{\n" \
 	"\t\tal_destroy_%s(data->m_%s);\n" \
 	"\t\tdata->m_%s = NULL;\n" \
-	"\t}\n\n"
+	"\t}\n"
 
 #define LC_STRING_EVENTQUEUE_CREATE "\tdata->m_event_queue = al_create_event_queue();\n" \
 	"\tif (NULL == data->m_event_queue)\n" \
@@ -147,7 +147,7 @@
 	"/// <returns>N/A</returns>\n"
 
 
-#define LC_STRING_INCLUDE	"#include \"%s.h\"\n\n"
+#define LC_STRING_INCLUDE	"#include \"%c_manifest.h\"\n\n"
 #define LC_STRING_ALLEGRO_INCLUDE	"#include <allegro5/allegro5.h>\n"
 #define LC_STRING_ALLEGRO_ADDON_INCLUDE		"#include <allegro5/allegro_%s.h>\n"
 #define LC_STRING_DEFAULT_INCLUDE	"#include <stdio.h>\n" \

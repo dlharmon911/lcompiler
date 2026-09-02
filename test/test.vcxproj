@@ -155,7 +155,7 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="manifest\manifest.c" />
+    <ClCompile Include="manifest\t_manifest.c" />
     <ClCompile Include="src\main.c" />
   </ItemGroup>
   <ItemGroup>
@@ -164,14 +164,13 @@
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)$(Platform)\$(Configuration)\lcompiler %(FullPath) -d manifest -o manifest</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">manifest.c;manifest.h</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)$(Platform)\$(Configuration)\lcompiler %(FullPath) -d manifest -o manifest</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">manifest.c;manifest.h</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)$(Platform)\$(Configuration)\lcompiler %(FullPath)  -d manifest -o test</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">manifest\t_manifest.c;manifest\t_manifest.h</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)$(Platform)\$(Configuration)\lcompiler %(FullPath)  -d manifest -o test</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">manifest\t_manifest.c;manifest\t_manifest.h</Outputs>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</TreatOutputAsContent>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</TreatOutputAsContent>
     </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="manifest\manifest.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -180,6 +179,9 @@
     <ProjectReference Include="..\lcompiler.vcxproj">
       <Project>{e7fe3e64-e9b0-4aeb-8b0f-d0e35108a9fe}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="manifest\t_manifest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

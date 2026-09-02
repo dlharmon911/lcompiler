@@ -270,6 +270,7 @@ static int32_t lc_output_event_queue(const lc_parse_data_t* data, ALLEGRO_FILE* 
 	al_fprintf(file, LC_STRING_EVENTQUEUE_REGISTER_OBJECT, LC_STRING_DISPLAY, LC_STRING_DISPLAY);
 	al_fprintf(file, LC_STRING_EVENTQUEUE_REGISTER_OBJECT, LC_STRING_TIMER, LC_STRING_TIMER);
 	lc_output_register_input(data, file);
+	al_fputc(file, '\n');
 
 	return 0;
 }
@@ -340,7 +341,9 @@ static int32_t lc_output_function_uninitialize_data(const lc_parse_data_t* data,
 	}
 
 	al_fprintf(file, LC_STRING_DESTROY_OBJECT, LC_STRING_EVENT_QUEUE, LC_STRING_EVENT_QUEUE, LC_STRING_EVENT_QUEUE, LC_STRING_EVENT_QUEUE);
+	al_fputc(file, '\n');
 	al_fprintf(file, LC_STRING_DESTROY_OBJECT, LC_STRING_TIMER, LC_STRING_TIMER, LC_STRING_TIMER, LC_STRING_TIMER);
+	al_fputc(file, '\n');
 	al_fprintf(file, LC_STRING_DESTROY_OBJECT, LC_STRING_DISPLAY, LC_STRING_DISPLAY, LC_STRING_DISPLAY, LC_STRING_DISPLAY);
 
 	return 0;
@@ -352,7 +355,7 @@ int32_t lc_output_file_source(const lc_parse_data_t* data)
 	{
 		return -1;
 	}
-	ALLEGRO_FILE* file = al_fopen(data->m_output_filename_source, "w");
+	ALLEGRO_FILE* file = al_fopen(data->m_output_filename_source, "wb");
 	if (NULL == file)
 	{
 		printf("Failed to open output file: %s\n", data->m_output_filename_source);
@@ -362,33 +365,33 @@ int32_t lc_output_file_source(const lc_parse_data_t* data)
 	lc_timestamp(timestamp, sizeof(timestamp), LC_STRING_TIMESTAMP_FORMAT);
 
 	al_fprintf(file, LC_STRING_TIMESTAMP, data->m_output_filename_source, timestamp);
-	al_fprintf(file, LC_STRING_INCLUDE, data->m_prefix);
+	al_fprintf(file, LC_STRING_INCLUDE, data->m_char);
 
 	al_fprintf(file, LC_STRING_ERROR, data->m_prefix_upper, data->m_prefix_upper);
 
-	al_fprintf(file, ""LC_STRING_DECLARE_FUNCTION_INSTALL_ALLEGRO "\n", data->m_prefix);
+	al_fprintf(file, ""LC_STRING_DECLARE_FUNCTION_INSTALL_ALLEGRO "\n", data->m_char);
 	al_fprintf(file, "{\n");
 	lc_output_function_install_allegro(data, file);
 	al_fprintf(file, "}\n\n");
 
-	al_fprintf(file, ""LC_STRING_DECLARE_FUNCTION_UNINSTALL_ALLEGRO "\n", data->m_prefix);
+	al_fprintf(file, ""LC_STRING_DECLARE_FUNCTION_UNINSTALL_ALLEGRO "\n", data->m_char);
 	al_fprintf(file, "{\n");
 	lc_output_function_uninstall_allegro(data, file);
 	al_fprintf(file, "}\n\n");
 
-	al_fprintf(file, LC_STRING_DECLARE_FUNCTION_ZERO_DATA "\n", data->m_prefix, data->m_prefix);
+	al_fprintf(file, LC_STRING_DECLARE_FUNCTION_ZERO_DATA "\n", data->m_char, data->m_char);
 	al_fprintf(file, "{\n");
 	al_fprintf(file, LC_STRING_VERIFY_DATA, "data", data->m_prefix_upper, "data", "");
 	lc_output_function_zero_data(data, file);
 	al_fprintf(file, "}\n\n");
 
-	al_fprintf(file, LC_STRING_DECLARE_FUNCTION_INITIALIZE_DATA "\n", data->m_prefix, data->m_prefix);
+	al_fprintf(file, LC_STRING_DECLARE_FUNCTION_INITIALIZE_DATA "\n", data->m_char, data->m_char);
 	al_fprintf(file, "{\n");
 	al_fprintf(file, LC_STRING_VERIFY_DATA, "data", data->m_prefix_upper, "data", " -1");
 	lc_output_function_initialize_data(data, file);
 	al_fprintf(file, "}\n\n");
 
-	al_fprintf(file, LC_STRING_DECLARE_FUNCTION_UNINITIALIZE_DATA "\n", data->m_prefix, data->m_prefix);
+	al_fprintf(file, LC_STRING_DECLARE_FUNCTION_UNINITIALIZE_DATA "\n", data->m_char, data->m_char);
 	al_fprintf(file, "{\n");
 	al_fprintf(file, LC_STRING_VERIFY_DATA, "data", data->m_prefix_upper, "data", "");
 	lc_output_function_uninitialize_data(data, file);
